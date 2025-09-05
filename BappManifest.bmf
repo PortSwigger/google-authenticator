@@ -9,5 +9,5 @@ ProOnly: False
 Author: Alexandre Teyar, Aegis Cyber (www.aegiscyber.co.uk)
 ShortDescription: Generate Google Authenticator OTPs in session handling rules.
 EntryPoint: build/libs/google-authenticator-all.jar
-BuildCommand: gradle fatJar
+BuildCommand: ./gradlew fatJar
 SupportedProducts: Pro, Community
