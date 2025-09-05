@@ -24,7 +24,6 @@ test {
 }
 
 task fatJar(type: Jar) {
-    baseName = project.name + '-all'
     duplicatesStrategy = 'exclude'
     from { 
         configurations.runtimeClasspath.collect { 
