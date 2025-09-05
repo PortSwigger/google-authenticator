@@ -1,11 +1,27 @@
-<p>This Burp Suite extension turns Burp into a Google Authenticator client. The current Google Two-Factor Authentication (2FA) code is automatically computed from a given shared secret and applied to bespoke location(s) in relevant requests in real-time.</p>
+<p>Google Authenticator transforms Burp Suite into a fully functional Time-based One-Time Password (TOTP)
+    client that automatically generates and applies current 2FA codes to HTTP requests in real-time. This extension is
+    essential for testing applications protected by Google 2FA, enabling seamless automated scanning and manual testing
+    without the need to constantly generate codes from a mobile authenticator app.</p>
 
-<p>Instructions:</p>
+<h2>Features</h2>
+<ul>
+    <li>Real-time TOTP code generation using shared secrets from Google Authenticator setup</li>
+    <li>Automatic 2FA code replacement in HTTP requests via configurable regular expressions</li>
+    <li>Session handling rule integration for seamless workflow with Scanner, Intruder, and Repeater</li>
+    <li>Live code display with 30-second refresh cycle matching standard TOTP timing</li>
+    <li>Pattern matching support for flexible code placement in various request formats</li>
+    <li>Session tracer integration for monitoring code replacements</li>
+</ul>
 
+<h2>Usage</h2>
 <ol>
-<li>Input the <em>shared secret</em> used by the Time-based One-Time Password (TOTP) algorithm into Google Authenticator.</li>
-<li>Input the (regular) expression to match and replace in issued request(s) into Google Authenticator. Use the regex <em>(?&lt;![\w\d])\d{6,8}(?![\w\d])</em> for optimal results as Google 2FA codes are made up of 6 to 8 digits according to the relevant RFCs.</li>
-<li>Configure a session handling rule that applies to relevant request(s) and invokes this extension.</li>
+    <li>Obtain the shared secret from your Google Authenticator setup (typically provided as a QR code or base32 string)
+    </li>
+    <li>Enter the shared secret in the Google Authenticator tab within Burp Suite</li>
+    <li>Configure a regular expression to match 2FA codes in your requests (recommended: <code
+            class="InlineCode">(?&lt;![\w\d])\d{6,8}(?![\w\d])</code>)</li>
+    <li>Navigate to "Settings &rarr; Sessions &rarr; Session Handling Rules" and add a new rule</li>
+    <li>Select "Invoke a Burp extension" and choose "Google Authenticator: 2FA code applied to selected parameter"</li>
+    <li>Configure the rule scope to target only requests containing 2FA parameters</li>
+    <li>Monitor code replacements using the Session Tracer or Logger tab</li>
 </ol>
-
-<p>For more detailed instructions on how to use/leverage Google Auhtenticator, consult the README available on the <a href="https://github.com/aress31/googleauthenticator">GitHub project page</a>.</p>
